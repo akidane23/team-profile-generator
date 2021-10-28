@@ -1,48 +1,38 @@
 //create helper function for each type of employee
 //Manager
 const managerTemplate = (employees) => `
-
-  <div class="card" style="width: 25rem;" >
+<div class="col-sm-4" style="margin-top: 50px;">
+  <div class="card" style="width: 20rem;">
+  <div class="card-header bg-primary">
+  <h1 class="card-title bg-primary text-white">${employees.name}</h1>
+  <h2 class = "card-subtitle text-white"><i class="fas fa-mug-hot"></i>${employees.getRole()}<h2>
+  </div>
   <div class="card-body">
-  <div class="row justify-content-start">
-  <div class="col-sm-12">
-
-    <h5 class="card-title">
-    <h1 class="card-title bg-primary">${employees.name}</h1>
-    <h2 class = "card-subtitle">${employees.getRole()}<h2>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${employees.id}</li>
-      <li class="list-group-item"><a href="mailto:${employees.email}">${employees.email}</a></li>
-      <li class="list-group-item">${employees.officeNumber}</li>
+    <ul class="list-group text-left">
+      <li class="list-group-item">ID: ${employees.id}</li>
+      <li class="list-group-item">Email: <a href="mailto:${employees.email}">${employees.email}</a></li>
+      <li class="list-group-item">Office number: ${employees.officeNumber}</li>
     </ul>
-    </h5>
-    <p class="card-text"></p>
-    <p class="card-text"><small class="text-muted"></small></p>
-    </div>
     </div>
   </div>
 </div>
-
-
-<div>
   `
 
 //Engineer
 const engineerTemplate = (employees) => {
   return `
-<div class ="card" style="width: 25rem;">
+  <div class="col-sm-4" style="margin-top: 50px;">
+<div class ="card" style="width: 20rem;">
+<div class="card-header bg-primary">
+<h1 class="card-title bg-primary text-white">${employees.name}</h1>
+<h2 class = "card-subtitle text-white"><i class="fas fa-glasses"></i>${employees.getRole()}<h2>
+</div>
 <div class ="card-body">
-<div class="row justify-content-start">
-<div class="col-sm-12">
-
-  <h1 class="card-title bg-primary">${employees.name}</h1>
-  <h2 class = "card-subtitle">${employees.getRole()}<h2>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">${employees.id}</li>
-    <li class="list-group-item"><a href="mailto:${employees.email}">${employees.email}</a></li>
-    <li class="list-group-item"><a target="_blank" href="https://github.com/${employees.github}">Github</a></li>
+  <ul class="list-group text-left">
+    <li class="list-group-item">ID: ${employees.id}</li>
+    <li class="list-group-item">Email: <a href="mailto:${employees.email}">${employees.email}</a></li>
+    <li class="list-group-item">GitHub: <a target="_blank" href="https://github.com/${employees.github}">${employees.github}</a></li>
   </ul>
-  </div>
   </div>
   </div>
 </div>
@@ -50,19 +40,19 @@ const engineerTemplate = (employees) => {
 
 //Intern
 const internTemplate = (employees) => `
-<div class ="card" style="width: 25rem;">
+<div class="col-sm-4" style="margin-top: 50px;">
+<div class ="card" style="width: 20rem;">
+<div class="card-header bg-primary">
+<h1 class="card-title bg-primary text-white">${employees.name}</h1>
+<h2 class = "card-subtitle text-white"><i class="fas fa-user-graduate"></i>${employees.getRole()}<h2>
+</div>
 <div class ="card-body">
-<div class="row justify-content-start">
-<div class="col-sm-12">
 
-  <h1 class="card-title bg-primary">${employees.name}</h1>
-  <h2 class = "card-subtitle">${employees.getRole()}<h2>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">${employees.id}</li>
-    <li class="list-group-item"><a href="mailto:${employees.email}">${employees.email}</a></li>
-    <li class="list-group-item">${employees.school}</li>
-  </ul>
-  </div>
+<ul class="list-group text-left">
+<li class="list-group-item">ID: ${employees.id}</li>
+<li class="list-group-item">Email: <a href="mailto:${employees.email}">${employees.email}</a></li>
+<li class="list-group-item">School: ${employees.school}</li>
+</ul>
   </div>
 </div>
 </div>
@@ -78,12 +68,19 @@ const generatePage = (employees) => `
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Team-Profile</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
 </head>
 
 <body>
-<div class="text-center">
-<div class="p-4 mb-2 bg-danger text-white">My Team</div>
+<div class="container-fluid p-0 mb-0">
+        <div class="jumbotron jumbotron-fluid bg-danger text-light">
+            <div class="container text-center">
+                <h1 class="display-4">My Team</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center" id="cards">
+
       ${employees.map((person) => {
 
   console.log(`person.role: ${person.getRole()}`)
@@ -103,6 +100,8 @@ const generatePage = (employees) => `
   }
 }).join("")
   }
+  </div>
+  </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
